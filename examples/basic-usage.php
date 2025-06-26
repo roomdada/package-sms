@@ -6,16 +6,16 @@ use Room\Sms\SmsClient;
 
 // Configuration du client avec votre token Letexto
 $client = new SmsClient([
-    'token' => 'aeca24110a548d582c1bbdd0ef8feddf',
+    'token' => 'votre_token_lettexto_ici',
     'base_url' => 'https://apis.letexto.com/v1'
 ]);
 
 try {
-    // Envoi d'un SMS simple (exemple basé sur votre curl)
+    // Envoi d'un SMS simple (exemple sécurisé)
     $response = $client->send([
-        'to' => '2250767476595',
-        'content' => 'Bienvenue sur daylivro',
-        'from' => 'Daylivro'
+        'to' => '2250100000000',
+        'content' => 'Votre code de vérification est: 123456',
+        'from' => 'MonApp'
     ]);
 
     echo "SMS envoyé avec succès!\n";

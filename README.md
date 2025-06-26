@@ -27,9 +27,9 @@ $client = new SmsClient([
 
 ```php
 $response = $client->send([
-    'to' => '212689131285',
+    'to' => '2250100000000',
     'content' => 'Votre code de vérification est: 123456',
-    'from' => 'Daylivro'
+    'from' => 'MonApp'
 ]);
 ```
 
@@ -37,9 +37,9 @@ $response = $client->send([
 
 ```php
 $response = $client->send([
-    'to' => '212689131285',
+    'to' => '2250200000000',
     'content' => 'Message de test',
-    'from' => 'MonApp'
+    'from' => 'TestApp'
 ]);
 ```
 
@@ -47,9 +47,9 @@ $response = $client->send([
 
 ```php
 $response = $client->sendBulk([
-    'to' => ['212689131285', '212698765432'],
+    'to' => ['2250100000000', '2250200000000'],
     'content' => 'Message en masse',
-    'from' => 'Daylivro'
+    'from' => 'MonApp'
 ]);
 ```
 
@@ -66,7 +66,7 @@ $response = $client->sendBulk([
 ## Exemple d'API Letexto
 
 ```bash
-curl --location 'https://apis.letexto.com/v1/messages/send?from=Daylivro&to=212689131285&content=Bienvenue%20sur%20daylivro&token=aeca24110a548d582c1bbdd0ef8feddf'
+curl --location 'https://apis.letexto.com/v1/messages/send?from=MonApp&to=2250100000000&content=Votre%20code%20de%20verification&token=votre_token'
 ```
 
 ## Tests
