@@ -7,7 +7,7 @@ Package PHP pour l'envoi de SMS via l'API Letexto.
 ## Installation
 
 ```bash
-composer require room/letexto-sms-package
+composer require room/letexto-sms-package:^1.0
 ```
 
 ## Configuration
@@ -58,7 +58,7 @@ $response = $client->sendBulk([
 ### Installation dans Laravel
 
 ```bash
-composer require room/letexto-sms-package
+composer require room/letexto-sms-package:^1.0
 ```
 
 ### Configuration Laravel
@@ -66,10 +66,6 @@ composer require room/letexto-sms-package
 #### Option 1 : Publier le fichier de configuration (recommandé)
 
 ```bash
-composer dump-autoload
-git add .
-git commit -m "fix: make config publishable for Laravel"
-git push origin main
 php artisan vendor:publish --provider="Room\Sms\SmsServiceProvider"
 ```
 
@@ -166,13 +162,3 @@ composer test
 ## Licence
 
 MIT License - Développé par DA Sie Roger
-
-## ⚠️ Note importante sur l'expéditeur (sender)
-
-L'expéditeur (`from` ou `sender`) doit être validé par Letexto pour votre compte. Si vous utilisez un nom d'expéditeur non autorisé, l'API retournera une erreur :
-
-> Sender "MonApp" is not allowed. Please contact our support.
-
-**Utilisez toujours un expéditeur validé par Letexto pour vos envois réels.**
-
----
