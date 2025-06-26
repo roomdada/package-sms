@@ -53,6 +53,89 @@ $response = $client->sendBulk([
 ]);
 ```
 
+## Intégration Laravel
+
+### Installation dans Laravel
+
+```bash
+composer require room/letexto-sms-package
+```
+
+### Configuration Laravel
+
+#### Option 1 : Publier le fichier de configuration (recommandé)
+
+```bash
+php artisan vendor:publish --provider="Room\Sms\SmsServiceProvider"
+```
+
+#### Option 2 : Configuration manuelle
+
+Créez le fichier `config/letexto.php` :
+
+```php
+<?php
+
+return [
+    'token' => env('LETEXTO_TOKEN', ''),
+    'base_url' => env('LETEXTO_BASE_URL', 'https://apis.letexto.com/v1'),
+    'sender' => env('LETEXTO_SENDER', 'MonApp'),
+    'timeout' => env('LETEXTO_TIMEOUT', 30),
+    'logging' => env('LETEXTO_LOGGING', false),
+];
+```
+
+Dans votre fichier `.env` :
+
+```env
+LETEXTO_TOKEN=votre_token_ici
+LETEXTO_BASE_URL=https://apis.letexto.com/v1
+LETEXTO_SENDER=MonApp
+LETEXTO_TIMEOUT=30
+LETEXTO_LOGGING=false
+```
+
+### Utilisation dans un Controller
+
+```php
+<?php
+
+namespace App\Http\Controllers;
+
+use Room\Sms\SmsClient;
+
+class SmsController extends Controller
+{
+    public function sendSms(SmsClient $smsClient)
+    {
+        $response = $smsClient->send([
+            'to' => '2250100000000',
+            'content' => 'Votre code de vérification est: 123456',
+            'from' => config('letexto.sender')
+        ]);
+
+        return response()->json($response);
+    }
+}
+```
+
+### Utilisation avec Injection de Dépendance
+
+```php
+public function sendSms(SmsClient $smsClient)
+{
+    $response = $smsClient->send([
+        'to' => '2250100000000',
+        'content' => 'Votre code: 123456',
+        'from' => config('letexto.sender')
+    ]);
+
+    return response()->json($response);
+}
+```
+
+**📖 [Guide complet d'intégration Laravel](docs/laravel-integration.md)**
+
 ## Fonctionnalités
 
 - ✅ Envoi de SMS simple
@@ -62,6 +145,7 @@ $response = $client->sendBulk([
 - ✅ Support des caractères spéciaux
 - ✅ Rapports de livraison
 - ✅ Compatible avec l'API Letexto
+- ✅ Intégration Laravel native
 
 ## Exemple d'API Letexto
 
@@ -78,3 +162,13 @@ composer test
 ## Licence
 
 MIT License - Développé par DA Sie Roger
+
+## ⚠️ Note importante sur l'expéditeur (sender)
+
+L'expéditeur (`from` ou `sender`) doit être validé par Letexto pour votre compte. Si vous utilisez un nom d'expéditeur non autorisé, l'API retournera une erreur :
+
+> Sender "MonApp" is not allowed. Please contact our support.
+
+**Utilisez toujours un expéditeur validé par Letexto pour vos envois réels.**
+
+---

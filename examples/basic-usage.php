@@ -6,7 +6,7 @@ use Room\Sms\SmsClient;
 
 // Configuration du client avec votre token Letexto
 $client = new SmsClient([
-    'token' => 'votre_token_lettexto_ici',
+    'token' => 'aeca24110a548d582c1bbdd0ef8feddf',
     'base_url' => 'https://apis.letexto.com/v1'
 ]);
 
