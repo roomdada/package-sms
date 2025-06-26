@@ -66,6 +66,10 @@ composer require room/letexto-sms-package
 #### Option 1 : Publier le fichier de configuration (recommandé)
 
 ```bash
+composer dump-autoload
+git add .
+git commit -m "fix: make config publishable for Laravel"
+git push origin main
 php artisan vendor:publish --provider="Room\Sms\SmsServiceProvider"
 ```
 

@@ -22,7 +22,10 @@
     "autoload": {
         "psr-4": {
             "Room\\Sms\\": "src/"
-        }
+        },
+          "files": [
+        "config/letexto.php"
+    ]
     },
     "autoload-dev": {
         "psr-4": {
